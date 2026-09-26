@@ -14,20 +14,20 @@ st.write("Pilih Product ID untuk melihat detail produk, lalu paste ingredients-n
 def load_queue_data():
     try:
         # Membaca file queue 122 produk kosong
-        df = pd.read_csv("products_missing_ingredients_queue.csv")
+        df = pd.read_csv("products_ingredients_under_13_queu.csv")
         # Pastikan kolom string rapi
         df["product_id"] = df["product_id"].astype(str).str.strip()
         df["soco_brand"] = df["soco_brand"].fillna("").astype(str)
         df["soco_product_name"] = df["soco_product_name"].fillna("").astype(str)
         return df
     except Exception as e:
-        st.error(f"Gagal membaca file 'products_missing_ingredients_queue.csv': {e}")
+        st.error(f"Gagal membaca file 'products_ingredients_under_13_queu.csv': {e}")
         return pd.DataFrame()
 
 df_queue = load_queue_data()
 
 if df_queue.empty:
-    st.warning("File queue produk kosong atau tidak ditemukan. Pastikan 'products_missing_ingredients_queue.csv' berada di folder yang sama.")
+    st.warning("File queue produk kosong atau tidak ditemukan. Pastikan 'products_ingredients_under_13_queu.csv' berada di folder yang sama.")
     st.stop()
 
 # Buat daftar opsi untuk Dropdown: "P000283 - Brand Name - Product Name"
